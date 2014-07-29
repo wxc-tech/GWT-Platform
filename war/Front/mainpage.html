@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Platform</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+</head>
+<body style="background-color: #e8e8e8">
+<div class="content">
+
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="mainpage.html">GWT Container</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" name="user-name" class="dropdown-toggle" data-toggle="dropdown"></a>
+                    <ul class="dropdown-menu">
+                        <li align="center" class="well">
+                            <div><img name="user-image" class="img-responsive" style="padding:2%;" src="http://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/twDq00QDud4/s120-c/photo.jpg"/></div>
+                            <a href="profile.html" class="btn btn-sm btn-default"><i class="fa fa-user"></i> Profile</a>
+                            <a href="#" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-lock"></span> Security</a>
+                            <a href="javascript:signout()" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul name="usericon" class = "nav navbar-nav navbar-right">
+                <li><a data-toggle="modal" href = "#loginModal"><span class="fa fa-user">Sign in</span></a></li>
+            </ul>
+
+            <!-- Modal -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"><strong>Please login</strong></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form class="form-horizontal" action='javascript:signin()' method="GET">
+                                            <!-- Username -->
+                                            <label class="control-label"  for="email">Email</label>
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                                            <!-- Password-->
+                                            <label class="control-label" for="password">Password</label>
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="Passward" required>
+                                            <p></p>
+                                            <button type="submit" class="btn btn-primary">Sign in</button>
+                                            <a href="setNewPassword.html">Forgot Password?</a>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <h1></h1>
+                                        <div class="col-md-10 col-lg-offset-1">
+                                            <a class="btn btn-google-plus-style btn-lg btn-block" href="../userSocialAuth/google">
+                                                <span>Login with <strong>Google+</strong></span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-lg-offset-1">
+                                            <a class="btn btn-facebook-style btn-lg btn-block" href="../userSocialAuth/google">
+                                                <span>Login with <strong>Facebook</strong></span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-lg-offset-1">
+                                            <a class="btn btn-info btn-lg btn-block" href="../userSocialAuth/twitter">
+                                                <span>Login with <strong>Twitter</strong></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <p>
+                                <b>New To here?</b>
+                                <a href="signup.html" class="btn btn-primary">Register</a>
+                            </p>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+        </div>
+    </div>
+</div>
+
+<div class="content" id="property-listings">
+<div class="col-md-12">
+<!--FILTERS-->
+<div class="row">
+    <div class="col-md-7 col-md-offset-1">
+        <div id="filters" class="button-group">
+            <button class="button is-checked" data-filter="*">ALL Game</button>
+            <button class="button" data-filter=".CardGame">Card Game</button>
+            <button class="button" data-filter=".BoardGame">Board Game</button>
+            <button class="button" data-filter=".ChessGame">Chess Game</button>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div id="sorts" class="button-group">
+            <button class="button is-checked" data-sort-value="original-order">Original Order</button>
+            <button class="button" data-sort-value="rating">Rating</button>
+        </div>
+        <h3></h3>
+    </div>
+</div>
+<!--FILTERS-->
+<!--<div class="row">-->
+<div class=" isotope">
+    <!-- Begin Listing: 609 W GRAVERS LN-->
+    <div id="5059880838758400" class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame" style="width:48%; margin-left: 10px">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="javascript:playgame('cheat.html', '500', '600', '5059880838758400')" target="_parent">Cheat<small class="pull-right">Rating 5</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(5059880838758400)" class="btn btn-sm btn-info" id="ratingButton" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">5</li>
+                    <li style="list-style: none">|</li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo" class="btn btn-sm btn-info" id="_5059880838758400" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right" onclick="checkLogin()">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 218 LYNNEBROOK LN-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame" style="width:48%; margin-left: 10px">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Chess Game1<small class="pull-right">Rating 2</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-0987654544434356" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">2</li>
+                    <li style="list-style: none">|</li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-8181726162371" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-8181726162371"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-2984723894710340" class="btn btn-sm btn-info" id="_46631716245645361060608" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 218 LYNNEBROOK LN-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame" style="width:48%; margin-left: 10px">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Card Game2<small class="pull-right">Rating 3</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-09876545444343567" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">3</li>
+                    <li style="list-style: none">|</li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-09876545444343567" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-09876545444343567"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-09876545444343567" class="btn btn-sm btn-info" id="-09876545444343567" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 209 CHESTNUT HILL AVE-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame" style="width:48%; margin-left: 10px">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Board Game1 <small class="pull-right">Rating 1</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-098765454443435" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">1</li>
+                    <li style="list-style: none">|</li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-62368704123974109823" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-62368704123974109823"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-62368704123974109823" class="btn btn-sm btn-info" id="-62368704123974109823" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 609 W GRAVERS LN-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item CardGame" data-category="CardGame" style="width:48%; margin-left: 10px">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Card Game3 <small class="pull-right">Rating 5</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-09876545444343567001" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">5</li>
+                    <li style="list-style: none">|</li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-721309470192374019237" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-721309470192374019237"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-721309470192374019237" class="btn btn-sm btn-info" id="-721309470192374019237" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+
+    <!-- Begin Listing: 704 SAINT GEORGES ST-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame" style="width:48%; margin-left: 10px">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Board Game2<small class="pull-right">Rating 5</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-09876545444343" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">5</li>
+                    <li style="list-style: none">|</li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-2341234123409790128" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-2341234123409790128"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-2341234123409790128" class="btn btn-sm btn-info" id="-2341234123409790128" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 701 W ALLENS LN-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing element-item BoardGame" data-category="BoardGame" style="width:48%; margin-left: 10px">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">BoardGame3<small class="pull-right">Rating 1</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-098765454443435671231" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">1</li>
+                    <li style="list-style: none">|</li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-07987098709870931" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-07987098709870931"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-07987098709870931" class="btn btn-sm btn-info" id="-07987098709870931" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+
+    <!-- Begin Listing: 704 SAINT GEORGES ST-->
+    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing  element-item ChessGame" data-category="ChessGame" style="width:48%; margin-left: 10px">
+        <div class="media">
+            <a class="pull-left" href="#" target="_parent">
+                <img alt="image" class="img-responsive" src="img/black.jpg"></a>
+
+            <div class="clearfix visible-sm"></div>
+
+            <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                    <a href="#" target="_parent">Chess Game2<small class="pull-right">Rating 3</small></a></h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <button name="ratingButton" data-toggle="modal" href="#ratingModal" onclick="javascript:setGameIndex(4663171621060608)" class="btn btn-sm btn-info" id="ratingButton-0987654544434356743" rel="popover" data-content="Click to rate this game!" data-original-title="Rating">Rating</button>
+                    <li class="rating">3</li>
+                    <li style="list-style: none">|</li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ratingModal-17907948567390845762" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="ratingModalLabel-17907948567390845762"><strong>Rating the Game</strong></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-4 button-group-lg">
+                                            <button class="button" onclick="javascript:getRating(1)">1</button>
+                                            <button class="button" onclick="javascript:getRating(2)">2</button>
+                                            <button class="button" onclick="javascript:getRating(3)">3</button>
+                                            <button class="button" onclick="javascript:getRating(4)">4</button>
+                                            <button class="button" onclick="javascript:getRating(5)">5</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <a name="developerInfo-17907948567390845762" class="btn btn-sm btn-info" id="-17907948567390845762" rel="popover" data-content="" data-original-title="Developer Info">Developer</a>
+
+
+                </ul>
+
+                <p class="hidden-xs">
+                    A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific.
+                    Countless card games exist, including families of related games (such as poker).
+                </p>
+                                            <span class="fnt-smaller fnt-lighter fnt-arial">
+                                                t, including families of related games (suc
+                                            </span>
+                <button class="btn-sm btn-primary pull-right">play</button>
+            </div>
+        </div>
+    </div><!-- End Listing-->
+<!--</div>-->
+</div>
+</div>
+</div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-popover.js"></script>
+<script src="js/bootstrap-tooltip.js"></script>
+<script src="js/cookie.js"></script>
+<script src="js/main.js"></script>
+<script src="js/sign.js"></script>
+<script src="js/sort.js"></script>
+<script src="js/jquery.isotope.min.js"></script>
+<script src="js/jquery.countdown.js"></script>
+<script src="js/playgame.js"></script>
+<script src="js/rating.js"></script>
+<script src="js/getDeveloperInfo.js"></script>
+</body>
+</html>
